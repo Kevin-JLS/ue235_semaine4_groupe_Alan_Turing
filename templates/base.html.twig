@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+
+        <style>
+            .nav {width: 100%; height: 50px; background:black; display: flex; justify-content: center; align-items: center; font-family: 'Montserrat', sans-serif; }
+            .nav-list {width: 80%; display:flex; justify-content: space-between; align-items: center; padding: 0; margin: 0;}
+            .nav-list a {text-decoration: none; color:white; font-weight: lighter;}
+            .nav-list a:hover {color:gray;}
+            .nav-item {list-style-type: none;}
+        </style>
+
+        {% block stylesheets %} {{ encore_entry_link_tags('app') }} {% endblock %}
+        
+    </head>
+
+    <body>
+
+        <nav class="nav">
+            <ul class="nav-list">
+                <li class="nav-item {% if app.request.get('_route') == 'accueil' %}active{% endif %}">
+                    <a class="nav-link" href="{{ path('accueil') }}">Accueil</a>
+                </li>
+                <li class="nav-item {% if app.request.get('_route') == 'app_register' %}active{% endif %}">
+                    <a class="nav-link" href="{{ path('app_register') }}">S'inscrire</a>
+                </li>
+                <li class="nav-item {% if app.request.get('_route') == 'app_login' %}active{% endif %}">
+                    <a class="nav-link" href="{{ path('app_login') }}">Se connecter</a>
+                </li>
+                <li class="nav-item {% if app.request.get('_route') == 'article_index' %}active{% endif %}">
+                    <a class="nav-link" href="{{ path('article_index') }}">Articles</a>
+                </li>
+                <li class="nav-item {% if app.request.get('_route') == 'category_index' %}active{% endif %}">
+                    <a class="nav-link" href="{{ path('category_index') }}">Catégories</a>
+                </li>
+            </ul>
+        </nav>
+
+        {% block body %}{% endblock %}
+        {% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock %}
+        
+    </body>
+</html>
